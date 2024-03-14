@@ -1,0 +1,31 @@
+---
+import type { GetStaticPaths } from "astro";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "../../../keystatic.config";
+
+export const getStaticPaths = (async () => {
+  const reader = createReader(process.cwd(), keystaticConfig);
+
+  console.log(reader);
+  console.log(Object.keys(reader.collections));
+
+  const sections = Object.keys(reader.collections);
+
+  let params = sections.map(async (section) => {
+    const data = await reader.collections.posts.all();
+    return data.map((item) => {
+      return {
+        params: { section, item: item.slug },
+      };
+    });
+  }, []);
+
+  const result = (await Promise.all(params)).flat();
+
+  return result;
+}) satisfies GetStaticPaths;
+
+const params = Astro.params;
+---
+
+<div>{params.item}</div>

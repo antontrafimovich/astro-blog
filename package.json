@@ -1,0 +1,28 @@
+{
+  "name": "blog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prettier": "prettier *"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.9",
+    "@astrojs/markdoc": "^0.9.2",
+    "@astrojs/react": "^3.1.0",
+    "@keystatic/astro": "^5.0.0",
+    "@keystatic/core": "^0.5.5",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "astro": "^4.5.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.4.2"
+  }
+}
