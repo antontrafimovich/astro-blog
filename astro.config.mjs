@@ -6,6 +6,6 @@ import keystatic from "@keystatic/astro";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), markdoc()],
-  // output: 'hybrid'
+  integrations: [react(), markdoc(), ...(process.env.ENV === 'PROD' ? [] : [keystatic()])],
+  output: process.env.ENV === 'PROD' ? 'static' : 'hybrid'
 });
