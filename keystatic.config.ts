@@ -21,11 +21,19 @@ const tipSchema = fields.object(
   },
 );
 
+const courseSchema = fields.object({
+  label: fields.text({ label: "Label" }),
+  group: fields.relationship({
+    label: "Group",
+    description: "Group of common courses",
+    collection: "groups",
+  }),
+});
+
 const sectionsCollectionSchema = collection({
   label: "Sections",
   slugField: "title",
   path: "src/content/sections/*",
-  format: { contentField: "content" },
   schema: {
     title: fields.slug({
       name: { label: "Title", description: "Title of the page" },
@@ -42,18 +50,20 @@ const sectionsCollectionSchema = collection({
       },
       description: "Tips how to learn this course",
     }),
-    content: fields.mdx({
-      label: "Rich text",
-      components: {
-        Testimonial: block({
-          label: "Testimonial",
-          schema: {
-            author: fields.text({ label: "Author" }),
-            role: fields.text({ label: "Role" }),
-          },
-        }),
-      },
+    courses: fields.array(courseSchema, {
+      label: "Courses",
+      itemLabel: (item) => item.fields.label.value,
     }),
+  },
+});
+
+const groupsCollectionSchema = collection({
+  label: "Group",
+  slugField: "title",
+  path: "src/content/groups/*",
+  schema: {
+    title: fields.text({ label: "Title" }),
+    icon: fields.image({ label: "Icon", directory: "public/iamges" }),
   },
 });
 
@@ -63,8 +73,6 @@ export default config({
   },
   collections: {
     posts: sectionsCollectionSchema,
+    groups: groupsCollectionSchema,
   },
-  
 });
-
-
