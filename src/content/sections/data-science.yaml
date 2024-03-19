@@ -1,0 +1,8 @@
+title: Data Science
+color: '#333'
+tips:
+  - heading: Don't rush
+    description: Please don't rush in finding your way
+courses:
+  - label: Linux 101
+    group: Linux

@@ -1,8 +1,0 @@
-title: Development
-color: '#333333'
-tips:
-  - heading: Don't rush
-    description: This is my advice to you - don't rush
-courses:
-  - label: Bash for frontend developer
-    group: Linux

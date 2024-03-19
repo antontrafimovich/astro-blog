@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content'
-import BaseLayout from '../layout/base.astro'
+import BaseLayout from '../layout/base.astro';
 
-const collection = await getCollection("sections")
+const sections = await getCollection("sections");
 
 ---
 <BaseLayout>
   <ul>
-    {collection.map(item => <li>{item.data.title}</li>)}
+    {sections.map(item => <li>{item.data.title}</li>)}
 
   </ul>
 </BaseLayout>

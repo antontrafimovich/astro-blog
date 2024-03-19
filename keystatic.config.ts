@@ -34,6 +34,7 @@ const sectionsCollectionSchema = collection({
   label: "Sections",
   slugField: "title",
   path: "src/content/sections/*",
+  columns: ["title", "color"],
   schema: {
     title: fields.slug({
       name: { label: "Title", description: "Title of the page" },
@@ -62,7 +63,9 @@ const groupsCollectionSchema = collection({
   slugField: "title",
   path: "src/content/groups/*",
   schema: {
-    title: fields.text({ label: "Title" }),
+    title: fields.slug({
+      name: { label: "Title", description: "Title of the group" },
+    }),
     icon: fields.image({ label: "Icon", directory: "public/iamges" }),
   },
 });
@@ -72,7 +75,7 @@ export default config({
     kind: "local",
   },
   collections: {
-    posts: sectionsCollectionSchema,
+    sections: sectionsCollectionSchema,
     groups: groupsCollectionSchema,
   },
 });
