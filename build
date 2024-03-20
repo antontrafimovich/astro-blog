@@ -1,0 +1,16 @@
+#! /bin/bash
+
+BUILD_FOLDER_PATH=dist
+BUILD_TAR_NAME=dist.tar.gz
+
+npm run build
+
+if [ $? -ne 0 ]; then
+  echo "Error: build process failed"
+  exit 1
+fi
+
+tar -czf $BUILD_TAR_NAME $BUILD_FOLDER_PATH
+
+cp $BUILD_TAR_NAME ../
+
